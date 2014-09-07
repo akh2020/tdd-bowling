@@ -1,0 +1,23 @@
+{
+    "name": "akh2020/tdd-bowling",
+    "description": "The famous bowling game to learn TDD",
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "akh2020",
+            "email": "p@s.ici"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+        "fabpot/php-cs-fixer": "@stable",
+        "codeception/codeception": "*"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {"Team2020\\": "src/"}
+    }
+}
