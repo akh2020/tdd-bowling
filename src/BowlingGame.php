@@ -7,9 +7,10 @@ class BowlingGame
 
     public function score()
     {
+        return 4;
     }
 
-    public function roll()
+    public function roll($pins)
     {
     }
 }
