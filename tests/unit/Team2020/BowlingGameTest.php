@@ -25,4 +25,10 @@ class BowlingGameTest extends \Codeception\TestCase\Test
         $this->assertTrue(method_exists( $this->game, 'score'), 'BowlingGame has method score');
         $this->assertTrue(method_exists( $this->game, 'roll'), 'BowlingGame has method roll');
     }
+
+    public function testOneRoll()
+    {
+        $this->game->roll(4);
+        $this->assertEquals(4, $this->game->score(), 'when one rolls 4, score is 4');
+    }
 }
