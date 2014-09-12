@@ -66,4 +66,11 @@ class BowlingGameTest extends \Codeception\TestCase\Test
         if ($nbCatchs != 2)
             $this->fail('roll accept args out of bound');
     }
+
+    public function testTwoRoll()
+    {
+        $this->game->roll(1);
+        $this->game->roll(2);
+        $this->assertEquals(3, $this->game->score(), 'after two rolls of 1 and 2, the score must be 3');
+    }
 }
