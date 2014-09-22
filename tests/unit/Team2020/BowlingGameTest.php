@@ -80,4 +80,12 @@ class BowlingGameTest extends \Codeception\TestCase\Test
         $this->setExpectedException('OverflowException', '2 rolls must stay between 0 and 10, current score is 5, 6 provided.');
         $this->game->roll(6);
     }
+
+    public function testTwoFrames()
+    {
+        $this->game->roll(3);
+        $this->game->roll(6);
+        $this->game->roll(4);
+        $this->assertEquals(13, 'on complete frame of (3, 6) and a roll of 4, score must be 13');
+    }
 }
