@@ -18,6 +18,9 @@ class BowlingGame
             throw new \InvalidArgumentException ("roll needs an integer between 0 and 10, '$pins' provided.");
         if ( $pins < 0 || $pins > 10 )
             throw new \OutOfRangeException ("roll needs an integer between 0 and 10, '$pins' provided.");
-        $this->score += $pins;
+        if ( $this->score + $pins > 10 )
+            throw new \OverflowException ("2 rolls must stay between 0 and 10, current score is $this->score, $pins provided.");
+        else
+            $this->score += $pins;
     }
 }
