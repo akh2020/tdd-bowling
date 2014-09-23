@@ -73,4 +73,11 @@ class BowlingGameTest extends \Codeception\TestCase\Test
         $this->game->roll(2);
         $this->assertEquals(3, $this->game->score(), 'after two rolls of 1 and 2, the score must be 3');
     }
+
+    public function testTwoRollsBound()
+    {
+        $this->game->roll(5);
+        $this->setExpectedException('OverflowException', '2 rolls must stay between 0 and 10, current score is 5, 6 provided.');
+        $this->game->roll(6);
+    }
 }
