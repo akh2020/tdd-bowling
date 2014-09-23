@@ -86,6 +86,6 @@ class BowlingGameTest extends \Codeception\TestCase\Test
         $this->game->roll(3);
         $this->game->roll(6);
         $this->game->roll(4);
-        $this->assertEquals(13, 'on complete frame of (3, 6) and a roll of 4, score must be 13');
+        $this->assertEquals(13, $this->game->score(), 'on complete frame of (3, 6) and a roll of 4, score must be 13');
     }
 }
