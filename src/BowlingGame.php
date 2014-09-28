@@ -5,24 +5,32 @@ namespace Team2020;
 class BowlingGame
 {
 
-    private $score = 0;
-
-    private $ballCount = 0;
+    private $frame;
+    private $total = 0;
 
     public function score()
     {
-        return $this->score;
+        return $this->total + $this->frame->score();
     }
 
     public function roll($pins)
     {
         if ( !is_int ($pins) )
             throw new \InvalidArgumentException ("roll needs an integer between 0 and 10, '$pins' provided.");
+
         if ( $pins < 0 || $pins > 10 )
             throw new \OutOfRangeException ("roll needs an integer between 0 and 10, '$pins' provided.");
-        if ( $this->ballCount % 2 == 1 && $this->score + $pins > 10 )
-            throw new \OverflowException ("2 rolls must stay between 0 and 10, current score is $this->score, $pins provided.");
-        $this->score += $pins;
-        ++$this->ballCount;
+
+        if ( !$this->frame )
+            $this->frame = new BowlingFrame ();
+        try {
+            $this->frame->roll($pins);
+        } catch ( \OutOfRangeException $e ) {
+            if ( $this->frame->score() === 10 )
+                $this->total += $pins;
+            $this->total += $this->frame->score();
+            $this->frame = new BowlingFrame ();
+            $this->frame->roll($pins);
+        }
     }
 }
