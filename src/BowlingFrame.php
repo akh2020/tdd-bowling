@@ -11,7 +11,7 @@ class BowlingFrame
     public function roll($pins)
     {
         $score = $this->score();
-        if ( $this->throw2 != null )
+        if ( $this->throw2 != null || $this->isStrike() )
             throw new \OutOfRangeException ("frame already completed");
 
         if ( $this->throw1 + $pins > 10 )
@@ -26,5 +26,10 @@ class BowlingFrame
     public function score()
     {
         return $this->throw1 + $this->throw2;
+    }
+
+    public function isStrike()
+    {
+        return $this->throw1 === 10;
     }
 }

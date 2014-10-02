@@ -7,6 +7,7 @@ class BowlingGame
 
     private $frame;
     private $total = 0;
+    private $lastStrike;
 
     public function score()
     {
@@ -23,11 +24,19 @@ class BowlingGame
 
         if ( !$this->frame )
             $this->frame = new BowlingFrame ();
+
         try {
             $this->frame->roll($pins);
+
+            if ( $this->lastStrike )
+                $this->total += $pins;
+
         } catch ( \OutOfRangeException $e ) {
+            $this->lastStrike = $this->frame->isStrike();
+
             if ( $this->frame->score() === 10 )
                 $this->total += $pins;
+
             $this->total += $this->frame->score();
             $this->frame = new BowlingFrame ();
             $this->frame->roll($pins);

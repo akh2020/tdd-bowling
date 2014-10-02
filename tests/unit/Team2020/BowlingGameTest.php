@@ -96,4 +96,14 @@ class BowlingGameTest extends \Codeception\TestCase\Test
         $this->game->roll(9);
         $this->assertEquals(28, $this->game->score(), 'after a spare (4,6) and a roll of 9, the score must be 28');
     }
+
+    public function testStrike()
+    {
+        $this->game->roll(10);
+        $this->game->roll(5);
+        $this->game->roll(3);
+        $this->game->roll(8);
+        $this->game->roll(1);
+        $this->assertEquals(35, $this->game->score(), 'after (X; 5,3; 8,1) score must be 35');
+    }
 }
